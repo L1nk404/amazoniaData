@@ -11,9 +11,9 @@ public class App
         String FilePath = (OS == "Windows") ?
                             "..\\data\\data.csv" : "../data/data.csv";
 
-
+        // teste
         Utils.clearScreen();
-        
+
         System.out.printf("%s\n%s\n", OS,FilePath);
     }
 }
