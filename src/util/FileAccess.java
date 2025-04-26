@@ -49,7 +49,7 @@ public class FileAccess
                 for (String word : dataArray)
                 {
                     // Double (do tipo 99.99)
-                    if (word.matches("\\d{1,2}.\\d{1,2}"))
+                    if (word.matches("\\d{1,2}\\.\\d{1,2}"))
                     {
                         Double.parseDouble(word);
                     }
