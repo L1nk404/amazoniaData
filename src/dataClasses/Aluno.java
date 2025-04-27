@@ -19,8 +19,6 @@ public class Aluno
         String output = String.format("ID: %04d | Nome: %s", ID, Nome);
         return output;
     }
-
-    
     
     // Getter and setter
     public int getID() {
