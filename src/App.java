@@ -1,34 +1,23 @@
-import util.*;
+import dataAccess.*;
+import dataClasses.Aluno;
+import java.util.List;
+import util.Utils;
 
 public class App 
 {
     public static void main(String[] args) throws Exception 
     {
-        // Identifying th OS system
-        String OS = Utils.osIdentifier();
+        Utils.clearScreen();
 
-        // Setting relative path based on OS
-        String FilePath = (OS == "Windows") ?
-                            "..\\data\\data.csv" : "../data/data.csv";
+        FilePath alunoPath = new FilePath("aluno.csv", null);
 
-        // // teste
-        // Utils.clearScreen();
+        AlunoFileAccess alunoAccess = new AlunoFileAccess();
 
-        // System.out.printf("%s\n%s\n", OS,FilePath);
+        List<Aluno> alunos = alunoAccess.loadData("data/aluno.csv");
 
-
-        String[] array = {"123", "salada", "1.27", "-1", "batata", "-13.9898"}; // Java infers the size (4)
-
-        for (String num : array)
+        for (Aluno aluno : alunos)
         {
-            if (num.matches("-?\\d+.?\\d+"))
-            {
-                System.out.printf("%s: digit\n", num);
-            }
-            else
-            {
-                System.out.printf("%s: is String\n", num);
-            }
-        }
+            System.out.println(aluno);
+        }        
     }
 }
