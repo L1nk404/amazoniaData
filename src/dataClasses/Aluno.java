@@ -36,12 +36,4 @@ public class Aluno
     public void setNome(String nome) {
         Nome = nome;
     }
-
-    
-
-
-
-    
-    
-
 }
