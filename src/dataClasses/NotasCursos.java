@@ -1,53 +1,74 @@
 package dataClasses;
 
-public class NotasCursos extends Aluno
+public class NotasCursos
 {
-    int NP1;
-    int NP2;
-    int reposicao;
-    int exame;
+    int ID;
+    double NP1;
+    double NP2;
+    double reposicao;
+    double exame;
     
-    public NotasCursos(int ID, String Nome, int nP1, int nP2, int reposicao, int exame) {
-        super(ID, Nome);
+    // Constructor
+    public NotasCursos(int ID, double nP1, double nP2, double reposicao, double exame) 
+    {
+        this.ID = ID;
         NP1 = nP1;
         NP2 = nP2;
         this.reposicao = reposicao;
         this.exame = exame;
+    }
+
+    @Override
+    public String toString() 
+    {
+        String output = String.format("ID: %04d | NP1: %.2f | NP2: %.2f | Reposição: %.2f | Exame: %.2f  ",
+         ID,
+         NP1,
+         NP2,
+         reposicao,
+         exame);
+
+        return output;
     }
 
     // Getter and setters
-    public int getNP1() {
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int iD) {
+        ID = iD;
+    }
+
+    public double getNP1() {
         return NP1;
     }
 
-    public void setNP1(int nP1) {
+    public void setNP1(double nP1) {
         NP1 = nP1;
     }
 
-    public int getNP2() {
+    public double getNP2() {
         return NP2;
     }
 
-    public void setNP2(int nP2) {
+    public void setNP2(double nP2) {
         NP2 = nP2;
     }
 
-    public int getReposicao() {
+    public double getReposicao() {
         return reposicao;
     }
 
-    public void setReposicao(int reposicao) {
+    public void setReposicao(double reposicao) {
         this.reposicao = reposicao;
     }
 
-    public int getExame() {
+    public double getExame() {
         return exame;
     }
 
-    public void setExame(int exame) {
+    public void setExame(double exame) {
         this.exame = exame;
     }
-
-
-    
 }

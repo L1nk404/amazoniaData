@@ -132,8 +132,6 @@ public abstract class FileAccess<T>
     }
     
     // Método que será implementado nas classes filhas
-    protected abstract T parse(String[] fields);
+    protected abstract T parse(String[] dataArray);
     protected abstract T createObjToSave(Object... args);
-
-
 }

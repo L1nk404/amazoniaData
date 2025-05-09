@@ -17,7 +17,7 @@ public class FilePath
     public FilePath(String fileName, String directory) 
     {
         this.fileName = fileName;
-        this.directory = null;
+        this.directory = directory;
     }
 
     /**

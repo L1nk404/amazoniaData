@@ -30,7 +30,9 @@ public class AlunoFileAccess extends FileAccess<Aluno>
     @Override
     protected Aluno createObjToSave(Object... args) 
     {
-        return new Aluno((int) AlunoFileAccess.checkID(), (String) args[0]);
+        return new Aluno(
+            (int) AlunoFileAccess.checkID(), 
+            (String) args[0]);
     }
 
 }
