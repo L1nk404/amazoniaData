@@ -19,9 +19,7 @@ public class main
 
     // Identificador OS
     String OS = Utils.osIdentifier();
-
-
-    
+        
     
     public static void main(String[] args) throws Exception
     {
@@ -51,17 +49,15 @@ public class main
 
         switch (input1) 
         {
-            case "1": // Aluno
+            case "1" -> // Aluno
             {
                 input2 = subMenu("Aluno");
-                break;
             }
-            case "2": // Cursos
+            case "2" -> // Cursos
             {
                 input2 = subMenu("Cursos");
-                break;
             }
-            case "3": // Notas
+            case "3" -> // Notas
             {
                 FilePath notasPath;
 
@@ -96,16 +92,16 @@ public class main
                     scanner.nextLine();
                 }
 
-                break;
             }
 
 
-            default:
+            default -> {
                 Utils.clearScreen();
                 System.out.printf("Opção inválida, digite apenas opção [1],[2] ou [3]!\nDigite Enter para continuar!\n");
 
                 // Espera pelo Enter
                 scanner.nextLine();
+            }
         }
     }
 
