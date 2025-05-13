@@ -9,6 +9,11 @@ public class Aluno
     public Aluno(int ID, String Nome) 
     {
         this.ID = ID;
+
+        if (Nome.isEmpty())
+        {
+            System.out.printf("Nome não pode ser vazio!\n");
+        }
         this.Nome = Nome;
     }
 

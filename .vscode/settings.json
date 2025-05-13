@@ -3,5 +3,7 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
-    ]
+    ],
+    "bevel.java": "/home/link/.vscode/extensions/bevel-software.bevel-1.1.2/backend/amazon-corretto-17.0.15.6.1-linux-x64/bin/java",
+    "bevel.largeLanguageModel": "GEMINI"
 }
