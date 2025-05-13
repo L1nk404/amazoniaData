@@ -92,6 +92,7 @@ public class main
                         System.out.printf("%s", notasPath.toString());
                     }
 
+                    // Debug
                     scanner.nextLine();
                 }
 
