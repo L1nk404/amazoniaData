@@ -19,11 +19,11 @@ public class main
 
     // Identificador OS
     String OS = Utils.osIdentifier();
-        
+
+
     
     public static void main(String[] args) throws Exception
-    {
-        
+    {        
         while(true)
         {
             Utils.clearScreen();
@@ -38,9 +38,9 @@ public class main
         Scanner scanner = new Scanner(System.in);
 
         String input2;
+        String input3;
 
-
-        System.out.printf("Bem vindo!\n\n");
+        Utils.boldPrint("Bem vindo!\n");
         
         System.out.printf("[1] Aluno\n[2] Cursos\n[3] Notas\n");
         
@@ -49,23 +49,31 @@ public class main
 
         switch (input1) 
         {
-            case "1" -> // Aluno
+            case "1" -> // Aluno ===================================================
             {
                 input2 = subMenu("Aluno");
             }
-            case "2" -> // Cursos
+            case "2" -> // Cursos ==================================================
             {
                 input2 = subMenu("Cursos");
             }
-            case "3" -> // Notas
+            case "3" -> // Notas ===================================================
             {
-                FilePath notasPath;
+                // Variáveis de acesso
+                NotasCursosAccess notasOBJ = new NotasCursosAccess();
 
+                FilePath notasPath;
+                NotasCursosAccess notas;
+                List<NotasCursos> notasAccess;
+
+                // Limpa tela
                 Utils.clearScreen();
 
+                // Header
                 Utils.boldPrint("Notas");
-
                 Utils.boldPrint("\nArquivos:");
+
+                // Lista arquivos 
                 List<String> fileList = Utils.listFiles();
 
                 System.out.printf("Selecione a opção do arquivo desejada: ");
@@ -75,26 +83,50 @@ public class main
                 // Verificando se é digito positivo usando Regex
                 if (input2.matches("\\d+"))
                 {
-                    int index = Integer.parseInt(input2);
-                    
-                    // subtrai 1 do input
-                    index --;
+                    int index = Integer.parseInt(input2);                    
+                    index --;  // subtrai 1 do input
 
                     // Checa se o valor está no range da lista
                     if (index < fileList.size())
                     {
-                        notasPath = new FilePath(fileList.get(index), "Cursos");
+                        // Inicializando variáveis
+                        notasPath = new FilePath(fileList.get(index), "Cursos"); //FilePath
+                        notas = new NotasCursosAccess(); // NotasCursosAccess
+                        notasAccess = notas.loadData(notasPath.toString()); // List<NotasCursos>
 
-                        System.out.printf("%s", notasPath.toString());
+                        Utils.clearScreen();
+                        System.out.printf("[1] Ler Arquivo\n[2] Escrever no Arquivo\n");
+                        System.out.printf("Insira a opção desejada: ");
+                        input3 = scanner.nextLine();
+
+                        Utils.clearScreen();
+                        switch (input3) 
+                        {
+                            case "1" ->
+                            {
+                                for (NotasCursos aluno: notasAccess)
+                                {
+                                    System.out.println(aluno);
+                                }
+                                break;
+                            }
+                            case "2" ->
+                            {
+                                notasOBJ.saveDataHandle(notasPath, notas, notasAccess);
+                                break;
+                            }
+                            default ->
+                            {
+                                System.out.printf("Opção inválida! Pressione ENTER para continuar");
+                                scanner.nextLine();
+                                break;
+                            }
+                        }
                     }
-
-                    // Debug
                     scanner.nextLine();
                 }
 
             }
-
-
             default -> {
                 Utils.clearScreen();
                 System.out.printf("Opção inválida, digite apenas opção [1],[2] ou [3]!\nDigite Enter para continuar!\n");
@@ -150,10 +182,4 @@ public class main
     {
 
     }
-
-    public void criarNotas()
-    {
-
-    }
-
 }

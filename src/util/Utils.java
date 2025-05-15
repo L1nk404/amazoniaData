@@ -47,6 +47,11 @@ public class Utils
         }
     }
 
+    /**
+     * Lista Arquivos no diretório `data/Cursos`.
+     * 
+     * @return {@code List<String>} contendo os arquivos encontrados no diretório.
+     */
     public static List<String> listFiles() throws IOException
     {
         String OS = Utils.osIdentifier();               
