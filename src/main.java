@@ -7,21 +7,6 @@ import util.Utils;
 
 public class main 
 {
-    // Variaveis arquivo aluno
-    FilePath alunoPath = new FilePath("aluno.csv", null);
-    AlunoFileAccess alunoAccess = new AlunoFileAccess();
-    List<Aluno> alunos = alunoAccess.loadData(alunoPath.toString());
-    
-    // Variaveis curso
-    FilePath cursoPath = new FilePath("cursos.csv", null);
-    CursosFileAccess cursoAccess = new CursosFileAccess();
-    List<Curso> cursos = cursoAccess.loadData(cursoPath.toString());
-
-    // Identificador OS
-    String OS = Utils.osIdentifier();
-
-
-    
     public static void main(String[] args) throws Exception
     {        
         while(true)
@@ -35,27 +20,88 @@ public class main
     
     public static void Menu() throws IOException
     {
+        // Variaveis arquivo aluno
+        FilePath alunoPath = new FilePath("aluno.csv", null);
+        AlunoFileAccess alunoAccess = new AlunoFileAccess();
+        List<Aluno> alunos = alunoAccess.loadData(alunoPath.toString());
+        
+        // Variaveis curso
+        FilePath cursoPath = new FilePath("cursos.csv", null);
+        CursosFileAccess cursoAccess = new CursosFileAccess();
+        List<Curso> cursos = cursoAccess.loadData(cursoPath.toString());
+
+        CursosFileAccess cursoOBJ = new CursosFileAccess();
+    
+        // Identificador OS
+        String OS = Utils.osIdentifier();
+
+        // Scanner
         Scanner scanner = new Scanner(System.in);
 
         String input2;
         String input3;
 
+        // ====================================================
+
         Utils.boldPrint("Bem vindo!\n");
         
         System.out.printf("[1] Aluno\n[2] Cursos\n[3] Notas\n");
         
-        System.out.printf("\nDigite a opção do arquivo que deseja acessar: ");
+        System.out.printf("Digite a opção do arquivo que deseja acessar: ");
         String input1 = scanner.nextLine();
 
         switch (input1) 
         {
             case "1" -> // Aluno ===================================================
             {
-                input2 = subMenu("Aluno");
+                input2 = subMenu("Alunos");
+                
+                if ("1".equals(input2)) // Ler
+                {
+                    Utils.clearScreen();
+                    Utils.boldPrint("Alunos\n------------------------------------");
+
+                    for (Aluno aluno : alunos)
+                    {
+                        System.out.println(aluno);
+                    }
+                }
+                else // Escrever
+                {
+                    System.out.printf("Nome do aluno: ");
+                    input3 = scanner.nextLine();
+
+                    // Salvando dados
+                    alunoAccess.save(
+                    alunos, 
+                    alunoPath.toString(), 
+                    aluno -> String.format("%04d,%s", aluno.getID(), aluno.getNome()),
+                    input3);
+
+                    System.out.printf("Aluno salvo com sucesso\n");
+                }                
+                scanner.nextLine();                
             }
             case "2" -> // Cursos ==================================================
             {
                 input2 = subMenu("Cursos");
+                
+                if ("1".equals(input2)) // Ler
+                {
+                    Utils.clearScreen();
+                    Utils.boldPrint("Cursos\n------------------------------------");
+
+                    for (Curso curso : cursos)
+                    {
+                        System.out.println(curso);
+                    }
+
+                    scanner.nextLine();
+                }
+                else // Escrever
+                {
+                    cursoOBJ.saveDataHandle(cursoPath, cursoAccess, cursos);
+                }
             }
             case "3" -> // Notas ===================================================
             {
@@ -71,12 +117,12 @@ public class main
 
                 // Header
                 Utils.boldPrint("Notas");
-                Utils.boldPrint("\nArquivos:");
+                // Utils.boldPrint("\nArquivos:");
 
                 // Lista arquivos 
                 List<String> fileList = Utils.listFiles();
 
-                System.out.printf("Selecione a opção do arquivo desejada: ");
+                System.out.printf("Selecione o arquivo desejada: ");
 
                 input2 = scanner.nextLine();
 
@@ -149,7 +195,7 @@ public class main
         System.out.printf("[1] Ler Arquivo\n");
         System.out.printf("[2] Escrever no Arquivo\n");
         
-        System.out.printf("\nDigite a opção desejada: ");
+        System.out.printf("Digite a opção desejada: ");
         String input1 = scanner.nextLine();
 
         switch (input1) 
